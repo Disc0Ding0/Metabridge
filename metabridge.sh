@@ -117,6 +117,12 @@ then
 	# Initiate ExifTool
 	if [ $initiateAnalysis == "Y" ]
 	then
+        
+        if [ -z "$(ls -A filestore)" ]
+        then
+            echo "Sorry, unable to find any files with that critertia!"
+            exit 2
+        fi
 		cd filestore
 		exiftool . > ../results.txt
 		cd ..
@@ -155,10 +161,10 @@ then
 		fi
 	else
 		echo "Aborting Meta Analysis....."
-		read -p "Would you like to cleanse the filestore or preserve it for later analysis? cleanse or preserve" filestoreOption
+		read -p "Would you like to cleanse the filestore or preserve it for later analysis? cleanse or preserve : " filestoreOption
 		until [[ -n "$filestoreOption" && ($filestoreOption == "cleanse" || $filestoreOption == "Cleanse" || $filestoreOption == "preserve" || $filestoreOption == "Preserve") ]]
 		do
-			read -p "The value supplied is blank or invalid, please choose an option, cleanse or preserve" filestoreOption
+			read -p "The value supplied is blank or invalid, please choose an option, cleanse or preserve : " filestoreOption
 		done
 
 		if [[ $filestoreOption == "Cleanse" || $filestoreOption == "cleanse" ]]
@@ -179,6 +185,11 @@ fi
 elif [ $option == "2" ]
 then
 	echo "Analyzing..."
+	if [ -z "$(ls -A filestore)" ]
+        then
+            echo "Sorry, your file store is empty!"
+            exit 3
+        fi
 	cd filestore
     exiftool . > ../results.txt
     cd ..
@@ -252,7 +263,7 @@ then
                 cp -r filestore previous_analysis/$backup_name/filestore
                 cp results.txt previous_analysis/$backup_name/results.txt
                 rm -r filestore
-                rm results.txt
+			rm results.txt
 
                 echo "Success! A backup of the PDFs and results have been stored here: previous_analysis/$backup_name!"
     fi
