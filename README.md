@@ -1,5 +1,5 @@
 # Metabridge
-A script that bridges the gap between metagoofil and exiftool to be used when searching the web for PDF metadata.
+A script that bridges the gap between metagoofil and exiftool to be used when searching the web for document metadata.
 
 ## Overview
 This script is designed to help automate the harvesting of metadata from files hosted on a web server availble to google. It uses both metagoofil (to dork google finding files) and exiftool to scrape the metadata from the collected files. This is particularly useful when assessing brochureware during a penetration testing engagement.
