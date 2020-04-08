@@ -81,7 +81,7 @@ else
 	downloadLimit=$scrapeLimit
 fi
 
-read -p "Please enter the type of files you would like to scraped, in a list seperated by columns (Example: txt,pdf,png,jpg), this can also be set to ALL, to download any 3 letter file type (May take a while) : " filetypes
+read -p "Please enter the type of files you would like to scraped, in a list seperated by commas (Example: txt,pdf,png,jpg), this can also be set to ALL, to download any 3 letter file type (May take a while) : " filetypes
 
 until [ -n "$filetypes" ]
 do
